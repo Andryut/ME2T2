@@ -15,4 +15,5 @@ http://www.sju.edu/~sforman/courses/2000F_CSC_5835/, que es una página de simul
 
 ## Instrucciones para compilar el simulador
 Sobre una instalación de ubuntu en la carpeta raíz del proyecto correr
+
 g++ sistema_de_colas.cpp -o simulador
