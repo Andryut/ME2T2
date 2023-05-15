@@ -122,8 +122,8 @@ void controltiempo(void)  /* Funcion controltiempo */
 
     sig_tipo_evento = 0;
 
-    /*  Determina el tipo de evento del evento que debe ocurrir. */
-
+    /* Determina el tipo de evento del evento que debe ocurrir. */
+    /* Lo determina tomando el siguiente evento mas cercano */
     for (i = 1; i <= num_eventos; ++i)
         if (tiempo_sig_evento[i] < min_tiempo_sig_evento) {
             min_tiempo_sig_evento = tiempo_sig_evento[i];
@@ -158,13 +158,9 @@ void llegada(void)  /* Funcion de llegada */
 
     if (estado_servidor == OCUPADO) {
 
-        /* Sservidor OCUPADO, aumenta el numero de clientes en cola */
+        /* Verifica si hay condiciï¿½n de desbordamiento */
 
-        ++num_entra_cola;
-
-        /* Verifica si hay condición de desbordamiento */
-
-        if (num_entra_cola > LIMITE_COLA) {
+        if (num_entra_cola + 1 > LIMITE_COLA) {
 
             /* Se ha desbordado la cola, detiene la simulacion */
 
@@ -172,6 +168,11 @@ void llegada(void)  /* Funcion de llegada */
             fprintf(resultados, "%f", tiempo_simulacion);
             exit(2);
         }
+
+        
+        /* Sservidor OCUPADO, aumenta el numero de clientes en cola */
+
+        ++num_entra_cola;
 
         /* Todavia hay espacio en la cola, se almacena el tiempo de llegada del
         	cliente en el ( nuevo ) fin de tiempo_llegada */
@@ -238,7 +239,7 @@ void salida(void)  /* Funcion de Salida. */
 
 void reportes(void)  /* Funcion generadora de reportes. */
 {
-    /* Calcula y estima los estimados de las medidas deseadas de desempeño */  
+    /* Calcula y estima los estimados de las medidas deseadas de desempeï¿½o */  
     fprintf(resultados, "\n\nEspera promedio en la cola%11.3f minutos\n\n",
             total_de_esperas / num_clientes_espera);
     fprintf(resultados, "Numero promedio en cola%10.3f\n\n",
