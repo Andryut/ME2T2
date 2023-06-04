@@ -278,7 +278,7 @@ void reportes(void) /* Funcion generadora de reportes. */
             total_de_esperas / num_clientes_espera);
     fprintf(resultados, "Numero promedio en cola%10.3f\n\n",
             area_num_entra_cola / tiempo_simulacion);
-    fprintf(resultados, "Uso del servidor%15.3f\n\n",
+    fprintf(resultados, "Uso del servidor%15.6f\n\n",
             area_estado_servidor / tiempo_simulacion);
     fprintf(resultados, "Tiempo de terminacion de la simulacion%12.3f minutos", tiempo_simulacion);
     
